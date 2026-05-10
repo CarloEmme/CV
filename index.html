@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlo Marzorati - Instructional Designer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom scrollbar hiding and animation */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-indigo-100 selection:text-indigo-900">
+
+    <!-- Header / Hero Section -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-6 py-16 md:py-24">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
+                <!-- Profile Image -->
+                <div class="flex-shrink-0">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-indigo-50 shadow-xl relative group">
+                        <img 
+                            src="foto profilo 2.png" 
+                            alt="Carlo Marzorati" 
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            onerror="this.src='https://ui-avatars.com/api/?name=Carlo+Marzorati&size=256&background=4f46e5&color=fff'"
+                        />
+                    </div>
+                </div>
+
+                <!-- Intro Text -->
+                <div class="flex-1 text-center md:text-left space-y-4">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+                        Carlo Marzorati
+                    </h1>
+                    <p class="text-xl text-indigo-600 font-medium flex items-center justify-center md:justify-start gap-2">
+                        <i data-lucide="layout" class="w-5 h-5"></i>
+                        Instructional Designer @ eDreams ODIGEO
+                    </p>
+                    
+                    <p class="text-slate-600 leading-relaxed max-w-2xl text-lg">
+                        I am a creative and globally-minded Instructional Designer with a decade of international experience. Rooted in Communication and Media studies, I specialize in transforming complex information into engaging, interactive e-learning experiences. From designing dynamic courses using Articulate 360 and the Adobe Suite, to managing robust platforms like Moodle and TalentLMS, I bring educational content to life. When I'm not designing learning journeys, you'll find me traveling the world, experimenting in the kitchen, or playing music.
+                    </p>
+
+                    <!-- Contact Links -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
+                        <a href="mailto:carlo.marzorati.1990@gmail.com" class="flex items-center gap-2 text-sm text-slate-600 hover:text-indigo-600 transition-colors bg-slate-100 hover:bg-indigo-50 px-4 py-2 rounded-full">
+                            <i data-lucide="mail" class="w-4 h-4"></i> Email Me
+                        </a>
+                        <a href="https://www.linkedin.com/in/carlo-marzorati-30117337" target="_blank" rel="noreferrer" class="flex items-center gap-2 text-sm text-slate-600 hover:text-indigo-600 transition-colors bg-slate-100 hover:bg-indigo-50 px-4 py-2 rounded-full">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                        </a>
+                        <a href="https://sites.google.com/view/carlomarzorati-cv/home" target="_blank" rel="noreferrer" class="flex items-center gap-2 text-sm text-slate-600 hover:text-indigo-600 transition-colors bg-slate-100 hover:bg-indigo-50 px-4 py-2 rounded-full">
+                            <i data-lucide="globe" class="w-4 h-4"></i> Portfolio Site
+                        </a>
+                        <span class="flex items-center gap-2 text-sm text-slate-500 px-2">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i> Barcelona, Catalonia, Spain
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        <!-- Navigation Tabs -->
+        <div class="flex overflow-x-auto border-b border-slate-200 mb-8 hide-scrollbar">
+            <button id="experience-btn" onclick="switchTab('experience')" class="tab-button flex items-center space-x-2 px-6 py-3 font-medium rounded-t-lg transition-all duration-300 border-b-2 border-indigo-600 text-indigo-600 bg-white">
+                <i data-lucide="briefcase" class="w-4 h-4"></i>
+                <span>Experience</span>
+            </button>
+            <button id="skills-btn" onclick="switchTab('skills')" class="tab-button flex items-center space-x-2 px-6 py-3 font-medium rounded-t-lg transition-all duration-300 border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50">
+                <i data-lucide="code" class="w-4 h-4"></i>
+                <span>Skills & Tools</span>
+            </button>
+            <button id="education-btn" onclick="switchTab('education')" class="tab-button flex items-center space-x-2 px-6 py-3 font-medium rounded-t-lg transition-all duration-300 border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                <span>Education & Certs</span>
+            </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="min-h-[500px]">
+            
+            <!-- Experience Tab -->
+            <div id="experience-content" class="tab-content block space-y-8 animate-fade-in">
+                <!-- Job 1 -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-2">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Instructional Designer</h3>
+                            <p class="text-indigo-600 font-medium">eDreams ODIGEO</p>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
+                                May 2022 - Present
+                            </span>
+                            <p class="text-sm text-slate-500 mt-1 flex items-center md:justify-end gap-1">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona, Catalonia, Spain
+                            </p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 mt-4">
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">AI personalisation and iteration, including guided learning paths creation with Coursera and Google Gemini.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Creation of online material targeting > 2,000 employees.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Creation of scripts and voiceover for e-learning courses and internal comms.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Design of online courses with Articulate, Camtasia, Vyond, and Adobe Suite.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Management of LMS platform (Cornerstone) and distribution of visual elements with Figma/Canva.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Collaboration with Creative Design Studio to become proficient in Visual and Motion Design.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-2">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Instructional Designer</h3>
+                            <p class="text-indigo-600 font-medium">EU Business School</p>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
+                                June 2021 - May 2022
+                            </span>
+                            <p class="text-sm text-slate-500 mt-1 flex items-center md:justify-end gap-1">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona, Catalonia, Spain
+                            </p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 mt-4">
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Creation of E-Learning content via Articulate (Storyline, Rise, Replay).</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Front-end development of learning platform via Bootstrap/HTML.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Video and photo editing via Adobe Suite.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Management of online courses (Moodle) and support to Academic Counsellors and Faculty.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-2">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">E-learning Developer</h3>
+                            <p class="text-indigo-600 font-medium">Dyson</p>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
+                                December 2018 - June 2021
+                            </span>
+                            <p class="text-sm text-slate-500 mt-1 flex items-center md:justify-end gap-1">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona Area, Spain
+                            </p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 mt-4">
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Delivery of multilanguage trainings on different working topics by designing and managing e-learning content.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Quality management, improvement of CSR effectiveness, and training monitoring.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Organization and management of company events and BVT testing for Salesforce.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-2">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Guest Relations Specialist</h3>
+                            <p class="text-indigo-600 font-medium">Booking.com</p>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
+                                June 2015 - August 2017
+                            </span>
+                            <p class="text-sm text-slate-500 mt-1 flex items-center md:justify-end gap-1">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Amsterdam & Barcelona Area
+                            </p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 mt-4">
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Liaised between guests and accommodations, handling modifications, special requests, and complaints.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Commercial advice and B2B sales activities.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div id="skills-content" class="tab-content hidden grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
+                <!-- Design & E-Learning -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+                        <i data-lucide="pen-tool" class="text-indigo-500 w-6 h-6"></i>
+                        <h3 class="text-xl font-bold text-slate-900">Design & E-Learning</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Articulate 360 (Storyline, Rise, Replay)</span>
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Camtasia</span>
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Vyond</span>
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Adobe Premiere Pro</span>
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Adobe After Effects</span>
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Adobe Photoshop</span>
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Adobe Animate</span>
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Figma</span>
+                        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition-colors cursor-default">Canva</span>
+                    </div>
+                </div>
+
+                <!-- Technical -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+                        <i data-lucide="monitor-play" class="text-indigo-500 w-6 h-6"></i>
+                        <h3 class="text-xl font-bold text-slate-900">Technical & Web</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">HTML</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">CSS</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">Javascript</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">Bootstrap</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">Google Workspace</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">Moodle</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">TalentLMS</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">Cornerstone</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors cursor-default">WordPress</span>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+                        <i data-lucide="message-square" class="text-indigo-500 w-6 h-6"></i>
+                        <h3 class="text-xl font-bold text-slate-900">Languages</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 text-center hover:shadow-md transition-shadow">
+                            <p class="font-bold text-slate-800">Italian</p>
+                            <p class="text-xs text-slate-500 mt-1">Native or Bilingual</p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 text-center hover:shadow-md transition-shadow">
+                            <p class="font-bold text-slate-800">Spanish</p>
+                            <p class="text-xs text-slate-500 mt-1">Native or Bilingual</p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 text-center hover:shadow-md transition-shadow">
+                            <p class="font-bold text-slate-800">English</p>
+                            <p class="text-xs text-slate-500 mt-1">Full Professional</p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 text-center hover:shadow-md transition-shadow">
+                            <p class="font-bold text-slate-800">Portuguese</p>
+                            <p class="text-xs text-slate-500 mt-1">Limited Working</p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 text-center hover:shadow-md transition-shadow">
+                            <p class="font-bold text-slate-800">French</p>
+                            <p class="text-xs text-slate-500 mt-1">Elementary</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education & Certifications Tab -->
+            <div id="education-content" class="tab-content hidden grid-cols-1 lg:grid-cols-2 gap-8 animate-fade-in">
+                <!-- Education -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="text-indigo-500 w-6 h-6"></i> Education
+                    </h3>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-slate-900">Master's degree, Communication and Media Studies</h4>
+                        <p class="text-indigo-600 text-sm mt-1 mb-2">University of Amsterdam</p>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">2013 - 2014</span>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-slate-900">Web Developer, Web Development</h4>
+                        <p class="text-indigo-600 text-sm mt-1 mb-2">Seeway - Escuela de Diseño, Animación, Comunicación Digital y Fotografía</p>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">2017</span>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-slate-900">Communication Science, Communication and Media Studies</h4>
+                        <p class="text-indigo-600 text-sm mt-1 mb-2">NHL Hogeschool</p>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">2011 - 2012</span>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                        <h4 class="font-bold text-slate-900">Bachelor of Science (B.Sc.), Communication and Media Studies</h4>
+                        <p class="text-indigo-600 text-sm mt-1 mb-2">Università Cattolica del Sacro Cuore</p>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">2009 - 2012</span>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i data-lucide="award" class="text-indigo-500 w-6 h-6"></i> Certifications
+                    </h3>
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                        
+                        <div class="p-4 md:p-6 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center flex-shrink-0 text-indigo-500">
+                                <i data-lucide="award" class="w-[18px] h-[18px]"></i>
+                            </div>
+                            <p class="text-slate-700 font-medium">Design Thinking for Innovation</p>
+                        </div>
+
+                        <div class="p-4 md:p-6 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center flex-shrink-0 text-indigo-500">
+                                <i data-lucide="award" class="w-[18px] h-[18px]"></i>
+                            </div>
+                            <p class="text-slate-700 font-medium">WordPress.com Essential Training</p>
+                        </div>
+
+                        <div class="p-4 md:p-6 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center flex-shrink-0 text-indigo-500">
+                                <i data-lucide="award" class="w-[18px] h-[18px]"></i>
+                            </div>
+                            <p class="text-slate-700 font-medium">Adobe After Effects for Beginners: Motion Design Essentials</p>
+                        </div>
+
+                        <div class="p-4 md:p-6 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center flex-shrink-0 text-indigo-500">
+                                <i data-lucide="award" class="w-[18px] h-[18px]"></i>
+                            </div>
+                            <p class="text-slate-700 font-medium">Photoshop CC 2019 Essential Training: The Basics</p>
+                        </div>
+
+                        <div class="p-4 md:p-6 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center flex-shrink-0 text-indigo-500">
+                                <i data-lucide="award" class="w-[18px] h-[18px]"></i>
+                            </div>
+                            <p class="text-slate-700 font-medium">Elearning Essentials: Instructional Design</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center">
+        <div class="max-w-5xl mx-auto px-6">
+            <p class="mb-4 text-slate-300">Let's build something great together.</p>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="mailto:carlo.marzorati.1990@gmail.com" class="hover:text-white transition-colors">
+                    <i data-lucide="mail"></i>
+                </a>
+                <a href="tel:+34634068980" class="hover:text-white transition-colors">
+                    <i data-lucide="phone"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/carlo-marzorati-30117337" target="_blank" rel="noreferrer" class="hover:text-white transition-colors">
+                    <i data-lucide="linkedin"></i>
+                </a>
+            </div>
+            <p class="text-sm">© <span id="current-year"></span> Carlo Marzorati. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactivity Script -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // 1. Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('block', 'grid');
+                content.classList.add('hidden');
+            });
+
+            // 2. Reset all tab buttons styling
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('border-indigo-600', 'text-indigo-600', 'bg-white');
+                button.classList.add('border-transparent', 'text-slate-500', 'hover:text-slate-800', 'hover:bg-slate-50');
+            });
+
+            // 3. Show selected tab content
+            const selectedContent = document.getElementById(tabId + '-content');
+            selectedContent.classList.remove('hidden');
+            // 'skills' and 'education' use grid layout, 'experience' uses block
+            if (tabId === 'skills' || tabId === 'education') {
+                selectedContent.classList.add('grid');
+            } else {
+                selectedContent.classList.add('block');
+            }
+
+            // 4. Highlight selected tab button
+            const selectedButton = document.getElementById(tabId + '-btn');
+            selectedButton.classList.remove('border-transparent', 'text-slate-500', 'hover:text-slate-800', 'hover:bg-slate-50');
+            selectedButton.classList.add('border-indigo-600', 'text-indigo-600', 'bg-white');
+        }
+    </script>
+</body>
+</html>
