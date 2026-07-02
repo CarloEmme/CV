@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* Custom scrollbar hiding and animation */
+        /* Custom scrollbar hiding */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -20,12 +20,49 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        
+        /* General Fade In for containers */
         .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
+            animation: fadeIn 0.4s ease-out forwards;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Generic Float In (Header items) */
+        .animate-float-in {
+            opacity: 0; /* Hidden by default */
+            animation: floatIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Subtle Float In Animation for Carousel Icons */
+        .job-icon-wrapper {
+            opacity: 0; 
+        }
+        .animate-subtle-float-in {
+            animation: floatInIcon 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation-delay: 0.15s;
+        }
+        @keyframes floatInIcon {
+            0% { opacity: 0; transform: translateY(15px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Staggered List Items and Cards */
+        .stagger-item, .tab-stagger-item {
+            opacity: 0; /* Hidden until animated via JS */
+        }
+        .stagger-animate {
+            animation: floatInStagger 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes floatInStagger {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -41,7 +78,7 @@
         <div class="max-w-5xl mx-auto px-6 py-16 md:py-24 relative z-10">
             <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
                 <!-- Profile Image -->
-                <div class="flex-shrink-0">
+                <div class="flex-shrink-0 animate-float-in" style="animation-delay: 0.1s;">
                     <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-indigo-50 shadow-xl relative group bg-indigo-100">
                         <img 
                             src="foto profilo 2.png" 
@@ -54,16 +91,16 @@
 
                 <!-- Intro Text -->
                 <div class="flex-1 text-center md:text-left space-y-4">
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight animate-float-in" style="animation-delay: 0.2s;">
                         Carlo Marzorati
                     </h1>
-                    <p class="text-xl text-indigo-600 font-medium flex items-center justify-center md:justify-start gap-2">
+                    <p class="text-xl text-indigo-600 font-medium flex items-center justify-center md:justify-start gap-2 animate-float-in" style="animation-delay: 0.3s;">
                         <span>👨‍💻</span>
                         Instructional Designer and Online Learning Specialist
                     </p>
                     
                     <!-- Description Card -->
-                    <div class="bg-white/80 backdrop-blur-md p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 mt-6 text-left relative overflow-hidden group">
+                    <div class="bg-white/80 backdrop-blur-md p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 mt-6 text-left relative overflow-hidden group animate-float-in" style="animation-delay: 0.4s;">
                         <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
                         <div class="space-y-3">
                             <p class="text-slate-700 leading-relaxed text-lg">
@@ -79,7 +116,7 @@
                     </div>
 
                     <!-- Contact Links -->
-                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4 animate-float-in" style="animation-delay: 0.5s;">
                         <a href="mailto:carlo.marzorati.1990@gmail.com" class="flex items-center gap-2 text-sm text-slate-600 hover:text-indigo-600 transition-colors bg-slate-100 hover:bg-indigo-50 px-4 py-2 rounded-full font-medium shadow-sm">
                             <i data-lucide="mail" class="w-4 h-4"></i> Email Me
                         </a>
@@ -119,231 +156,242 @@
         <!-- Tab Content -->
         <div class="min-h-[500px]">
             
-            <!-- Experience Tab (Accordion Mode) -->
-            <div id="experience-content" class="tab-content block space-y-6 animate-fade-in">
+            <!-- Experience Tab (Carousel Mode) -->
+            <div id="experience-content" class="tab-content block animate-fade-in relative px-0 md:px-12">
                 
-                <!-- Job 1 -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
-                    
-                    <!-- Clickable Header -->
-                    <div class="cursor-pointer flex flex-col md:flex-row md:items-start justify-between gap-4" onclick="toggleJob('job-1')">
-                        <div class="flex items-start gap-4">
-                            <!-- Company Icon -->
-                            <div class="w-14 h-14 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                <img src="edreamsodigeo.png" alt="eDreams ODIGEO" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=eDreams&background=e0e7ff&color=4f46e5&bold=true';">
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Instructional Designer & Online Learning Specialist</h3>
-                                <p class="text-indigo-600 font-medium">eDreams ODIGEO</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-row items-center justify-between md:flex-col md:items-end w-full md:w-auto mt-2 md:mt-0">
-                            <div class="text-left md:text-right">
-                                <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
-                                    May 2022 - Present
-                                </span>
-                                <p class="text-sm text-slate-500 mt-2 flex items-center md:justify-end gap-1">
-                                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona, Catalonia, Spain
-                                </p>
-                            </div>
-                            <div class="p-2 rounded-full bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors md:mt-3">
-                                <i data-lucide="chevron-down" id="job-1-icon" class="w-5 h-5 transition-transform duration-300 rotate-180"></i>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Main Carousel Viewport -->
+                <div class="relative w-full overflow-hidden rounded-2xl" id="experience-carousel">
+                    <!-- Carousel Track -->
+                    <div class="flex transition-transform duration-500 ease-in-out items-stretch" id="carousel-track">
+                        
+                        <!-- Slide 1 -->
+                        <div class="w-full flex-shrink-0 px-2 md:px-4 py-2">
+                            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden h-full flex flex-col">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                                
+                                <!-- Header -->
+                                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                    <div class="flex items-start gap-4">
+                                        <!-- Animated Company Icon Wrapper -->
+                                        <div class="job-icon-wrapper w-14 h-14 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
+                                            <img src="edreamsodigeo.png" alt="eDreams ODIGEO" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=eDreams&background=e0e7ff&color=4f46e5&bold=true';">
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Instructional Designer & Online Learning Specialist</h3>
+                                            <p class="text-indigo-600 font-medium">eDreams ODIGEO</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-left md:text-right mt-2 md:mt-0 flex-shrink-0">
+                                        <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
+                                            May 2022 - Present
+                                        </span>
+                                        <p class="text-sm text-slate-500 mt-2 flex items-center md:justify-end gap-1">
+                                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona, Catalonia, Spain
+                                        </p>
+                                    </div>
+                                </div>
 
-                    <!-- Accordion Details -->
-                    <div id="job-1-details" class="block">
-                        <div class="w-full h-px bg-slate-100 my-5 md:ml-[72px] md:w-[calc(100%-72px)]"></div>
-                        <ul class="space-y-3 ml-0 md:ml-[72px]">
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed"><strong class="text-slate-800">AI Experience:</strong> Led AI personalization and iteration strategies, including the creation of guided learning paths integrated with Coursera and Google Gemini.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Creation of online material targeting > 2,000 employees.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Creation of scripts and voiceover for e-learning courses and internal comms.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Design of online courses with Articulate, Camtasia, Vyond, and Adobe Suite.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Management of LMS platform (Cornerstone) and distribution of visual elements with Figma/Canva.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Collaboration with Creative Design Studio to become proficient in Visual and Motion Design.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
-                    
-                    <!-- Clickable Header -->
-                    <div class="cursor-pointer flex flex-col md:flex-row md:items-start justify-between gap-4" onclick="toggleJob('job-2')">
-                        <div class="flex items-start gap-4">
-                            <!-- Company Icon -->
-                            <div class="w-14 h-14 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                <img src="eubusinessschool.png" alt="EU Business School" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=EU&background=e0e7ff&color=4f46e5&bold=true';">
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Instructional Designer</h3>
-                                <p class="text-indigo-600 font-medium">EU Business School</p>
+                                <div class="w-full h-px bg-slate-100 my-5 md:ml-[72px] md:w-[calc(100%-72px)]"></div>
+                                
+                                <!-- Details -->
+                                <ul class="space-y-3 ml-0 md:ml-[72px] flex-grow">
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed"><strong class="text-slate-800">AI Experience:</strong> Led AI personalization and iteration strategies, including the creation of guided learning paths integrated with Coursera and Google Gemini.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Creation of online material targeting > 2,000 employees.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Creation of scripts and voiceover for e-learning courses and internal comms.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Design of online courses with Articulate, Camtasia, Vyond, and Adobe Suite.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Management of LMS platform (Cornerstone) and distribution of visual elements with Figma/Canva.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Collaboration with Creative Design Studio to become proficient in Visual and Motion Design.</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="flex flex-row items-center justify-between md:flex-col md:items-end w-full md:w-auto mt-2 md:mt-0">
-                            <div class="text-left md:text-right">
-                                <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
-                                    June 2021 - May 2022
-                                </span>
-                                <p class="text-sm text-slate-500 mt-2 flex items-center md:justify-end gap-1">
-                                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona, Catalonia, Spain
-                                </p>
-                            </div>
-                            <div class="p-2 rounded-full bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors md:mt-3">
-                                <i data-lucide="chevron-down" id="job-2-icon" class="w-5 h-5 transition-transform duration-300"></i>
+
+                        <!-- Slide 2 -->
+                        <div class="w-full flex-shrink-0 px-2 md:px-4 py-2">
+                            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden h-full flex flex-col">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                                
+                                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                    <div class="flex items-start gap-4">
+                                        <!-- Animated Company Icon Wrapper -->
+                                        <div class="job-icon-wrapper w-14 h-14 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
+                                            <img src="eubusinessschool.png" alt="EU Business School" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=EU&background=e0e7ff&color=4f46e5&bold=true';">
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Instructional Designer</h3>
+                                            <p class="text-indigo-600 font-medium">EU Business School</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-left md:text-right mt-2 md:mt-0 flex-shrink-0">
+                                        <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
+                                            June 2021 - May 2022
+                                        </span>
+                                        <p class="text-sm text-slate-500 mt-2 flex items-center md:justify-end gap-1">
+                                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona, Catalonia, Spain
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="w-full h-px bg-slate-100 my-5 md:ml-[72px] md:w-[calc(100%-72px)]"></div>
+                                
+                                <ul class="space-y-3 ml-0 md:ml-[72px] flex-grow">
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Creation of E-Learning content via Articulate (Storyline, Rise, Replay).</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Front-end development of learning platform via Bootstrap/HTML.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Video and photo editing via Adobe Suite.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Management of online courses (Moodle) and support to Academic Counsellors and Faculty.</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Accordion Details -->
-                    <div id="job-2-details" class="hidden">
-                        <div class="w-full h-px bg-slate-100 my-5 md:ml-[72px] md:w-[calc(100%-72px)]"></div>
-                        <ul class="space-y-3 ml-0 md:ml-[72px]">
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Creation of E-Learning content via Articulate (Storyline, Rise, Replay).</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Front-end development of learning platform via Bootstrap/HTML.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Video and photo editing via Adobe Suite.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Management of online courses (Moodle) and support to Academic Counsellors and Faculty.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                        <!-- Slide 3 -->
+                        <div class="w-full flex-shrink-0 px-2 md:px-4 py-2">
+                            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden h-full flex flex-col">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                                
+                                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                    <div class="flex items-start gap-4">
+                                        <!-- Animated Company Icon Wrapper -->
+                                        <div class="job-icon-wrapper w-14 h-14 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
+                                            <img src="dyson.png" alt="Dyson" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Dyson&background=e0e7ff&color=4f46e5&bold=true';">
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">E-learning Developer</h3>
+                                            <p class="text-indigo-600 font-medium">Dyson</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-left md:text-right mt-2 md:mt-0 flex-shrink-0">
+                                        <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
+                                            December 2018 - June 2021
+                                        </span>
+                                        <p class="text-sm text-slate-500 mt-2 flex items-center md:justify-end gap-1">
+                                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona Area, Spain
+                                        </p>
+                                    </div>
+                                </div>
 
-                <!-- Job 3 -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
-                    
-                    <!-- Clickable Header -->
-                    <div class="cursor-pointer flex flex-col md:flex-row md:items-start justify-between gap-4" onclick="toggleJob('job-3')">
-                        <div class="flex items-start gap-4">
-                            <!-- Company Icon -->
-                            <div class="w-14 h-14 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                <img src="dyson.png" alt="Dyson" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Dyson&background=e0e7ff&color=4f46e5&bold=true';">
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">E-learning Developer</h3>
-                                <p class="text-indigo-600 font-medium">Dyson</p>
+                                <div class="w-full h-px bg-slate-100 my-5 md:ml-[72px] md:w-[calc(100%-72px)]"></div>
+                                
+                                <ul class="space-y-3 ml-0 md:ml-[72px] flex-grow">
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Delivery of multilanguage trainings on different working topics by designing and managing e-learning content.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Quality management, improvement of CSR effectiveness, and training monitoring.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Organization and management of company events and BVT testing for Salesforce.</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="flex flex-row items-center justify-between md:flex-col md:items-end w-full md:w-auto mt-2 md:mt-0">
-                            <div class="text-left md:text-right">
-                                <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
-                                    December 2018 - June 2021
-                                </span>
-                                <p class="text-sm text-slate-500 mt-2 flex items-center md:justify-end gap-1">
-                                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Barcelona Area, Spain
-                                </p>
-                            </div>
-                            <div class="p-2 rounded-full bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors md:mt-3">
-                                <i data-lucide="chevron-down" id="job-3-icon" class="w-5 h-5 transition-transform duration-300"></i>
+
+                        <!-- Slide 4 -->
+                        <div class="w-full flex-shrink-0 px-2 md:px-4 py-2">
+                            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden h-full flex flex-col">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                                
+                                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                    <div class="flex items-start gap-4">
+                                        <!-- Animated Company Icon Wrapper -->
+                                        <div class="job-icon-wrapper w-14 h-14 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
+                                            <img src="booking_com.png" alt="Booking.com" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Booking&background=e0e7ff&color=4f46e5&bold=true';">
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Guest Relations Specialist</h3>
+                                            <p class="text-indigo-600 font-medium">Booking.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-left md:text-right mt-2 md:mt-0 flex-shrink-0">
+                                        <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
+                                            June 2015 - August 2017
+                                        </span>
+                                        <p class="text-sm text-slate-500 mt-2 flex items-center md:justify-end gap-1">
+                                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Amsterdam & Barcelona Area
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="w-full h-px bg-slate-100 my-5 md:ml-[72px] md:w-[calc(100%-72px)]"></div>
+                                
+                                <ul class="space-y-3 ml-0 md:ml-[72px] flex-grow">
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Liaised between guests and accommodations, handling modifications, special requests, and complaints.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-slate-600 stagger-item">
+                                        <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                                        <span class="leading-relaxed">Commercial advice and B2B sales activities.</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Accordion Details -->
-                    <div id="job-3-details" class="hidden">
-                        <div class="w-full h-px bg-slate-100 my-5 md:ml-[72px] md:w-[calc(100%-72px)]"></div>
-                        <ul class="space-y-3 ml-0 md:ml-[72px]">
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Delivery of multilanguage trainings on different working topics by designing and managing e-learning content.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Quality management, improvement of CSR effectiveness, and training monitoring.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Organization and management of company events and BVT testing for Salesforce.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 4 -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-indigo-100 group-hover:bg-indigo-500 transition-colors duration-300"></div>
-                    
-                    <!-- Clickable Header -->
-                    <div class="cursor-pointer flex flex-col md:flex-row md:items-start justify-between gap-4" onclick="toggleJob('job-4')">
-                        <div class="flex items-start gap-4">
-                            <!-- Company Icon -->
-                            <div class="w-14 h-14 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                <img src="booking_com.png" alt="Booking.com" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Booking&background=e0e7ff&color=4f46e5&bold=true';">
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Guest Relations Specialist</h3>
-                                <p class="text-indigo-600 font-medium">Booking.com</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-row items-center justify-between md:flex-col md:items-end w-full md:w-auto mt-2 md:mt-0">
-                            <div class="text-left md:text-right">
-                                <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-full">
-                                    June 2015 - August 2017
-                                </span>
-                                <p class="text-sm text-slate-500 mt-2 flex items-center md:justify-end gap-1">
-                                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Amsterdam & Barcelona Area
-                                </p>
-                            </div>
-                            <div class="p-2 rounded-full bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors md:mt-3">
-                                <i data-lucide="chevron-down" id="job-4-icon" class="w-5 h-5 transition-transform duration-300"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Accordion Details -->
-                    <div id="job-4-details" class="hidden">
-                        <div class="w-full h-px bg-slate-100 my-5 md:ml-[72px] md:w-[calc(100%-72px)]"></div>
-                        <ul class="space-y-3 ml-0 md:ml-[72px]">
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Liaised between guests and accommodations, handling modifications, special requests, and complaints.</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-slate-600">
-                                <i data-lucide="chevron-right" class="w-[18px] h-[18px] text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                                <span class="leading-relaxed">Commercial advice and B2B sales activities.</span>
-                            </li>
-                        </ul>
                     </div>
                 </div>
 
+                <!-- Floating Desktop Controls -->
+                <button onclick="prevSlide()" class="btn-prev hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-slate-200 rounded-full items-center justify-center text-slate-600 shadow-md hover:text-indigo-600 hover:border-indigo-300 transition-all z-10 disabled:opacity-30 disabled:cursor-not-allowed -translate-x-2">
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button onclick="nextSlide()" class="btn-next hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-slate-200 rounded-full items-center justify-center text-slate-600 shadow-md hover:text-indigo-600 hover:border-indigo-300 transition-all z-10 disabled:opacity-30 disabled:cursor-not-allowed translate-x-2">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+
+                <!-- Mobile Controls & Dots Pagination -->
+                <div class="flex justify-center items-center gap-4 mt-6">
+                    <button onclick="prevSlide()" class="btn-prev md:hidden p-2 text-slate-400 hover:text-indigo-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    
+                    <div class="flex gap-2" id="carousel-dots">
+                        <button onclick="goToSlide(0)" class="carousel-dot transition-all duration-300 h-2.5 w-8 bg-indigo-600 rounded-full" aria-label="Slide 1"></button>
+                        <button onclick="goToSlide(1)" class="carousel-dot transition-all duration-300 h-2.5 w-2.5 bg-slate-300 hover:bg-slate-400 rounded-full" aria-label="Slide 2"></button>
+                        <button onclick="goToSlide(2)" class="carousel-dot transition-all duration-300 h-2.5 w-2.5 bg-slate-300 hover:bg-slate-400 rounded-full" aria-label="Slide 3"></button>
+                        <button onclick="goToSlide(3)" class="carousel-dot transition-all duration-300 h-2.5 w-2.5 bg-slate-300 hover:bg-slate-400 rounded-full" aria-label="Slide 4"></button>
+                    </div>
+
+                    <button onclick="nextSlide()" class="btn-next md:hidden p-2 text-slate-400 hover:text-indigo-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Skills Tab -->
             <div id="skills-content" class="tab-content hidden grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
                 <!-- Design & E-Learning -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 tab-stagger-item">
                     <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
                         <span class="text-2xl">🎨</span>
                         <h3 class="text-xl font-bold text-slate-900">Design & E-Learning</h3>
@@ -362,7 +410,7 @@
                 </div>
 
                 <!-- Technical & Web (Hidden behind click to reveal) -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative tab-stagger-item">
                     <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
                         <span class="text-2xl">⚙️</span>
                         <h3 class="text-xl font-bold text-slate-900">Technical & Web</h3>
@@ -390,12 +438,12 @@
                 </div>
 
                 <!-- Languages (with Flags) -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 md:col-span-2">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 md:col-span-2 tab-stagger-item">
                     <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
                         <span class="text-2xl">🗣️</span>
                         <h3 class="text-xl font-bold text-slate-900">Languages</h3>
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 text-center hover:shadow-md transition-shadow flex flex-col items-center">
                             <img src="https://flagcdn.com/w80/it.png" alt="Italian" class="w-10 h-auto mb-3 shadow-sm rounded-sm">
                             <p class="font-bold text-slate-800">Italian</p>
@@ -421,6 +469,11 @@
                             <p class="font-bold text-slate-800">French</p>
                             <p class="text-xs text-slate-500 mt-1">Elementary</p>
                         </div>
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 text-center hover:shadow-md transition-shadow flex flex-col items-center">
+                            <img src="https://flagcdn.com/w80/nl.png" alt="Dutch" class="w-10 h-auto mb-3 shadow-sm rounded-sm">
+                            <p class="font-bold text-slate-800">Dutch</p>
+                            <p class="text-xs text-slate-500 mt-1">Limited Working</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -434,7 +487,7 @@
                     </h3>
 
                     <!-- UOC (WIP) -->
-                    <a href="https://www.uoc.edu/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                    <a href="https://www.uoc.edu/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300 tab-stagger-item">
                         <div class="flex items-start gap-4">
                             <!-- School Icon -->
                             <div class="w-12 h-12 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
@@ -449,7 +502,7 @@
                         </div>
                     </a>
                     
-                    <a href="https://www.uva.nl/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                    <a href="https://www.uva.nl/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300 tab-stagger-item">
                         <div class="flex items-start gap-4">
                             <!-- School Icon -->
                             <div class="w-12 h-12 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
@@ -463,7 +516,7 @@
                         </div>
                     </a>
 
-                    <a href="https://www.lcibarcelona.com/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                    <a href="https://www.lcibarcelona.com/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300 tab-stagger-item">
                         <div class="flex items-start gap-4">
                             <!-- School Icon -->
                             <div class="w-12 h-12 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
@@ -477,7 +530,7 @@
                         </div>
                     </a>
 
-                    <a href="https://www.nhlstenden.com/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                    <a href="https://www.nhlstenden.com/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300 tab-stagger-item">
                         <div class="flex items-start gap-4">
                             <!-- School Icon -->
                             <div class="w-12 h-12 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
@@ -491,7 +544,7 @@
                         </div>
                     </a>
 
-                    <a href="https://www.unicatt.it/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                    <a href="https://www.unicatt.it/" target="_blank" rel="noreferrer" class="block bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300 tab-stagger-item">
                         <div class="flex items-start gap-4">
                             <!-- School Icon -->
                             <div class="w-12 h-12 rounded-xl border border-slate-100 bg-white p-1 shadow-sm flex-shrink-0 flex items-center justify-center overflow-hidden">
@@ -511,7 +564,7 @@
                     <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                         <span class="text-2xl">🏅</span> Certifications
                     </h3>
-                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden tab-stagger-item">
                         
                         <div class="p-4 md:p-6 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors flex items-center gap-4">
                             <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center flex-shrink-0 text-indigo-500">
@@ -604,7 +657,7 @@
         lucide.createIcons();
 
         // GAMIFICATION logic
-        const visitedTabs = new Set(['experience']); // They start on experience tab
+        const visitedTabs = new Set(['experience']); 
         let badgeUnlocked = false;
 
         // Reveal Tech Skills Card
@@ -615,7 +668,6 @@
             overlay.style.display = 'none';
             list.classList.remove('hidden');
             
-            // tiny delay to allow CSS transitions to trigger smoothly
             setTimeout(() => {
                 list.classList.remove('opacity-0', 'translate-y-4');
             }, 50);
@@ -626,7 +678,6 @@
             const btn = document.getElementById('back-to-tabs-btn');
             const tabsMenu = document.getElementById('tabs-menu');
             
-            // Reveal button if we scrolled past the menu
             if (window.scrollY > tabsMenu.offsetTop) {
                 btn.classList.remove('translate-y-20', 'opacity-0');
             } else {
@@ -637,7 +688,7 @@
         function scrollToTabs() {
             const tabsMenu = document.getElementById('tabs-menu');
             window.scrollTo({
-                top: tabsMenu.offsetTop - 20, // 20px padding
+                top: tabsMenu.offsetTop - 20,
                 behavior: 'smooth'
             });
         }
@@ -645,7 +696,6 @@
         function showBadge() {
             const badge = document.getElementById('badge-popup');
             badge.classList.remove('hidden');
-            // Trigger browser reflow so transition works
             void badge.offsetWidth;
             badge.classList.remove('opacity-0');
             badge.querySelector('div').classList.remove('scale-90');
@@ -658,64 +708,134 @@
             setTimeout(() => badge.classList.add('hidden'), 300);
         }
 
-        // Tab Switching Logic
+        // --- CAROUSEL LOGIC ---
+        let currentSlideIndex = 0;
+        const totalSlides = 4;
+
+        function updateCarousel() {
+            const track = document.getElementById('carousel-track');
+            if(track) {
+                track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            }
+
+            // Update Pagination Dots
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                if(index === currentSlideIndex) {
+                    dot.classList.add('bg-indigo-600', 'w-8');
+                    dot.classList.remove('bg-slate-300', 'w-2.5', 'hover:bg-slate-400');
+                } else {
+                    dot.classList.remove('bg-indigo-600', 'w-8');
+                    dot.classList.add('bg-slate-300', 'w-2.5', 'hover:bg-slate-400');
+                }
+            });
+
+            // Update Next/Prev Button states
+            const btnPrev = document.querySelectorAll('.btn-prev');
+            const btnNext = document.querySelectorAll('.btn-next');
+            btnPrev.forEach(btn => btn.disabled = currentSlideIndex === 0);
+            btnNext.forEach(btn => btn.disabled = currentSlideIndex === totalSlides - 1);
+
+            // Re-trigger subtle float-in animation for active slide's icon
+            const activeSlideIcon = document.querySelectorAll('.job-icon-wrapper')[currentSlideIndex];
+            if (activeSlideIcon) {
+                activeSlideIcon.classList.remove('animate-subtle-float-in');
+                void activeSlideIcon.offsetWidth; // Trigger DOM reflow to restart animation
+                activeSlideIcon.classList.add('animate-subtle-float-in');
+            }
+
+            // Staggered list items for the active slide
+            const allSlides = document.querySelectorAll('#carousel-track > div');
+            allSlides.forEach((slide, sIndex) => {
+                const listItems = slide.querySelectorAll('.stagger-item');
+                if (sIndex === currentSlideIndex) {
+                    listItems.forEach((item, lIndex) => {
+                        item.classList.remove('stagger-animate');
+                        void item.offsetWidth; 
+                        // Delay increments by 0.1s for each list item
+                        item.style.animationDelay = `${0.2 + (lIndex * 0.1)}s`; 
+                        item.classList.add('stagger-animate');
+                    });
+                } else {
+                    // Reset hidden slides so they animate again when returned to
+                    listItems.forEach(item => {
+                        item.classList.remove('stagger-animate');
+                    });
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                updateCarousel();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateCarousel();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateCarousel();
+        }
+
+        // --- TAB LOGIC ---
         function switchTab(tabId) {
-            // 1. Hide all tab contents
+            // Hide all contents
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => {
                 content.classList.remove('block', 'grid');
                 content.classList.add('hidden');
             });
 
-            // 2. Reset all tab buttons styling
+            // Reset buttons
             const buttons = document.querySelectorAll('.tab-button');
             buttons.forEach(button => {
                 button.classList.remove('border-indigo-600', 'text-indigo-600', 'bg-white');
                 button.classList.add('border-transparent', 'text-slate-500', 'hover:text-slate-800', 'hover:bg-slate-50');
             });
 
-            // 3. Show selected tab content
+            // Show current tab content
             const selectedContent = document.getElementById(tabId + '-content');
             selectedContent.classList.remove('hidden');
-            // 'skills' and 'education' use grid layout, 'experience' uses block
+            
             if (tabId === 'skills' || tabId === 'education') {
                 selectedContent.classList.add('grid');
             } else {
                 selectedContent.classList.add('block');
+                // If it's experience tab, re-trigger carousel logic to reset animations
+                setTimeout(updateCarousel, 50);
             }
 
-            // 4. Highlight selected tab button
+            // Stagger animation for general tab contents (Education, Skills)
+            const tabStaggerItems = selectedContent.querySelectorAll('.tab-stagger-item');
+            tabStaggerItems.forEach((item, index) => {
+                item.classList.remove('stagger-animate');
+                void item.offsetWidth;
+                item.style.animationDelay = `${0.1 + (index * 0.1)}s`;
+                item.classList.add('stagger-animate');
+            });
+
+            // Highlight tab button
             const selectedButton = document.getElementById(tabId + '-btn');
             selectedButton.classList.remove('border-transparent', 'text-slate-500', 'hover:text-slate-800', 'hover:bg-slate-50');
             selectedButton.classList.add('border-indigo-600', 'text-indigo-600', 'bg-white');
 
-            // GAMIFICATION check
+            // Gamification
             visitedTabs.add(tabId);
             if (visitedTabs.size === 3 && !badgeUnlocked) {
                 badgeUnlocked = true;
-                setTimeout(showBadge, 600); // Slight delay for smoother UX
+                setTimeout(showBadge, 600);
             }
         }
 
-        // Accordion Logic for Experience Tab
-        function toggleJob(jobId) {
-            const allJobs = ['job-1', 'job-2', 'job-3', 'job-4'];
-            
-            allJobs.forEach(id => {
-                const content = document.getElementById(id + '-details');
-                const icon = document.getElementById(id + '-icon');
-                
-                if (id === jobId) {
-                    // Toggle the clicked job
-                    content.classList.toggle('hidden');
-                    icon.classList.toggle('rotate-180');
-                } else {
-                    // Close all other jobs
-                    content.classList.add('hidden');
-                    icon.classList.remove('rotate-180');
-                }
-            });
-        }
+        // Initialize Carousel on page load
+        updateCarousel();
     </script>
 </body>
 </html>
